@@ -1,8 +1,8 @@
 package mad.app.madandroidtestsolutions.service.catalog
 import com.apollographql.apollo3.api.ApolloResponse
-import mad.app.plptest.CategoryQuery
-import mad.app.plptest.CategoryRootQuery
-import mad.app.plptest.ProductQuery
+import mad.app.madandroidtestsolutions.CategoryQuery
+import mad.app.madandroidtestsolutions.CategoryRootQuery
+import mad.app.madandroidtestsolutions.ProductQuery
 
 interface ICatalogApiService {
     suspend fun fetchRootCategory(): CategoryRootQuery.CategoryList?

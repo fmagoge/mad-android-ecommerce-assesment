@@ -3,17 +3,36 @@ package mad.app.madandroidtestsolutions
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.compose.setContent
-import androidx.compose.material3.Text
+import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
+import kotlinx.coroutines.channels.Channel
+import mad.app.madandroidtestsolutions.adapter.ProductsAdapter
+import mad.app.madandroidtestsolutions.databinding.ActivityMainBinding
 import mad.app.madandroidtestsolutions.service.ApiService
 
 class MainActivity : AppCompatActivity() {
 
-    val apiService = ApiService.createEcommerceClient()
+    private val apiService = ApiService.createEcommerceClient()
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        val productList = mutableListOf<CategoryQuery.Item?>()
+        val adapter = ProductsAdapter(productList)
+        binding.recyclerView.layoutManager = GridLayoutManager(this@MainActivity, 2)
+        binding.recyclerView.adapter = adapter
+
+        val channel = Channel<Unit>(Channel.CONFLATED)
+
+        // Send a first item to do the initial load else the list will stay empty forever
+        channel.trySend(Unit)
+        adapter.onEndOfListReached = {
+            channel.trySend(Unit)
+        }
 
         lifecycleScope.launchWhenResumed {
 
@@ -23,12 +42,13 @@ class MainActivity : AppCompatActivity() {
                     "${
                         rootItems?.children
                             ?.filterNotNull()
-                            ?.map {
-                                "${it.name} (uid: ${it.uid})"
+                            ?.map { category ->
+                                "${category.name} (uid: ${category.uid})"
                             }
                             ?.joinToString(separator = "\n")
                     }"
             )
+
 
             //Lets grab the mens Category UUID and fetch the products for the first page
             val mensCategoryId = rootItems
@@ -56,6 +76,22 @@ class MainActivity : AppCompatActivity() {
                 it.data?.products?.items?.firstOrNull()?.productListFragment?.uid
             }
 
+            for (item in channel) {
+
+                val products = firstPageMensCat?.let {
+                    it.data?.products?.items
+                }
+
+
+                if (products != null) {
+                    productList.addAll(products)
+                    adapter.notifyDataSetChanged()
+                }
+            }
+
+            adapter.onEndOfListReached = null
+            channel.close()
+
             val firstProduct = firstProductUid?.let { uid ->
                 apiService.catalog?.getProduct(uid)
             }
@@ -65,11 +101,11 @@ class MainActivity : AppCompatActivity() {
                         "This product costs at least " +
                         "R${firstProduct?.productFragment?.productListFragment?.price_range?.priceRangeFragment?.minimum_price?.final_price?.value}"
             )
-
         }
 
-        setContent {
-            Text("Hello World")
+        adapter.onItemClicked = { launch ->
+            Toast.makeText(this, "toast", Toast.LENGTH_SHORT).show();
         }
+
     }
 }

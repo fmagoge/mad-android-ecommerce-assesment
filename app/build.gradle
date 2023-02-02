@@ -34,6 +34,7 @@ android {
 
     buildFeatures {
         compose true
+        dataBinding true
     }
 
     composeOptions {
@@ -49,6 +50,8 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.apollographql.apollo3:apollo-runtime:3.7.2'
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
+    implementation "io.coil-kt:coil:2.2.2"
+    implementation "androidx.recyclerview:recyclerview:1.2.1"
 
     //Jetpack Compose
     def composeBom = platform('androidx.compose:compose-bom:2022.10.00')
@@ -76,7 +79,7 @@ dependencies {
 
 apollo {
     service("api") {
-        packageName.set("mad.app.plptest")
+        packageName.set("mad.app.madandroidtestsolutions")
         schemaFile.set(file("src/main/graphql/schema.graphql"))
         srcDir("src/main/graphql/api")
     }

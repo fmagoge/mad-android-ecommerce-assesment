@@ -4,11 +4,11 @@ import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.api.ApolloResponse
 import com.apollographql.apollo3.api.Optional
 import kotlinx.coroutines.flow.*
-import mad.app.plptest.CategoryQuery
-import mad.app.plptest.CategoryRootQuery
-import mad.app.plptest.ProductQuery
-import mad.app.plptest.type.FilterEqualTypeInput
-import mad.app.plptest.type.ProductAttributeFilterInput
+import mad.app.madandroidtestsolutions.CategoryQuery
+import mad.app.madandroidtestsolutions.CategoryRootQuery
+import mad.app.madandroidtestsolutions.ProductQuery
+import mad.app.madandroidtestsolutions.type.FilterEqualTypeInput
+import mad.app.madandroidtestsolutions.type.ProductAttributeFilterInput
 
 class CatalogApiService(val apolloClient: ApolloClient) : ICatalogApiService {
 
