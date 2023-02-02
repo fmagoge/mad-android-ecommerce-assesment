@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/product_img"
+            android:layout_width="140dp"
+            android:layout_height="220dp"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/product_name"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginLeft="15dp"
+            android:text="Suit Fit Pants"
+            android:textSize="16sp"
+            android:letterSpacing="0.03"
+            android:lineSpacingExtra="4sp"
+            android:textColor="#353C43"
+            app:layout_constraintLeft_toLeftOf="@id/product_img"
+            app:layout_constraintTop_toBottomOf="@id/product_img" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/product_brand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Formal Jacket"
+            android:textSize="10sp"
+            android:letterSpacing="0.06"
+            android:textColor="#9A9DA0"
+            app:layout_constraintLeft_toLeftOf="@id/product_name"
+            app:layout_constraintTop_toBottomOf="@id/product_name"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/product_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="R199.99"
+            android:textSize="16sp"
+            android:textColor="#353C43"
+            app:layout_constraintLeft_toLeftOf="@id/product_brand"
+            app:layout_constraintTop_toBottomOf="@id/product_brand"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
