@@ -1,9 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ItemActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ItemActivity">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/product_img"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/product_name"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginLeft="15dp"
+            android:letterSpacing="0.03"
+            android:lineSpacingExtra="4sp"
+            android:text="Suit Fit Pants"
+            android:textColor="#353C43"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="@id/product_img"
+            app:layout_constraintTop_toBottomOf="@id/product_img" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/product_brand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Formal Jacket"
+            android:textSize="10sp"
+            android:letterSpacing="0.06"
+            android:textColor="#9A9DA0"
+            app:layout_constraintLeft_toLeftOf="@id/product_name"
+            app:layout_constraintTop_toBottomOf="@id/product_name"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/product_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="R199.99"
+            android:textColor="#353C43"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="@id/product_brand"
+            app:layout_constraintTop_toBottomOf="@id/product_brand" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

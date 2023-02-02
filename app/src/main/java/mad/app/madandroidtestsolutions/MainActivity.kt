@@ -105,9 +105,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         adapter.onItemClicked = { launch ->
-            Toast.makeText(this, "toast", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, launch?.productListFragment?.name, Toast.LENGTH_SHORT).show();
             startActivity(Intent(this, ItemActivity::class.java).apply {
-
+                putExtra("brand", launch?.productListFragment?.brand)
+                putExtra("pName", launch?.productListFragment?.name)
+                putExtra("pPrice", "R${launch?.productListFragment?.price_range?.priceRangeFragment?.minimum_price?.final_price?.value}")
             })
         }
 
